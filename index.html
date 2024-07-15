@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Converter</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Currency Converter</h1>
-    <div>
-        <label for="amount">Amount:</label>
-        <input type="number" id="amount" placeholder="Enter amount">
+    <div class="container">
+        <h1>Currency Converter</h1>
+        <form id="currency-form">
+            <input type="number" id="amount" placeholder="Enter amount" required>
+            <select id="from-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <select id="to-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <button type="submit">Convert</button>
+        </form>
+        <div id="result"></div>
+        <div class="error-message" id="error-message"></div>
     </div>
-    <div>
-        <label for="from">From:</label>
-        <select id="from">
-            <!-- Options will be populated via JavaScript -->
-        </select>
-    </div>
-    <div>
-        <label for="to">To:</label>
-        <select id="to">
-            <!-- Options will be populated via JavaScript -->
-        </select>
-    </div>
-    <button onclick="convert()">Convert</button>
-    <div id="result"></div>
     <script src="script.js"></script>
 </body>
 </html>

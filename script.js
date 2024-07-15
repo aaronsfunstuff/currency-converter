@@ -21,7 +21,6 @@ async function convert() {
     }
 }
 
-// Populate currency dropdowns
 async function populateCurrencies() {
     try {
         const response = await fetch('https://v6.exchangerate-api.com/v6/1c84989414fff80c2aeb4aae/latest/USD');
@@ -29,18 +28,16 @@ async function populateCurrencies() {
 
         if (data.result === 'success') {
             const currencies = Object.keys(data.conversion_rates);
-
             const fromSelect = document.getElementById('from');
             const toSelect = document.getElementById('to');
 
             currencies.forEach(currency => {
                 const option = document.createElement('option');
-                option.innerText = currency;
+                option.innerText = `${currency} (${getCurrencySymbol(currency)})`;
                 fromSelect.appendChild(option.cloneNode(true));
                 toSelect.appendChild(option);
             });
 
-            // Set default currencies
             fromSelect.value = 'USD';
             toSelect.value = 'EUR';
         } else {
@@ -52,4 +49,17 @@ async function populateCurrencies() {
     }
 }
 
+function getCurrencySymbol(currencyCode) {
+    // Add logic to fetch or map currency symbols based on currency code
+    // Example:
+    const symbols = {
+        'USD': '$',
+        'EUR': '€',
+        'GBP': '£',
+        // Add more as needed
+    };
+    return symbols[currencyCode] || currencyCode;
+}
+
 populateCurrencies();
+
